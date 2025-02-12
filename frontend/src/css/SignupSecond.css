@@ -1,0 +1,109 @@
+.notion-setup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    background-color: #f4f4f4;
+  }
+  
+  .notion-box.caution {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    text-align: center;
+  }
+
+  .notion-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 900px;
+    text-align: center;
+    margin-bottom: 50px;
+
+  }
+  
+  .step-container {
+    margin-bottom: 20px;
+  }
+  
+  .step-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .step-text {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .step-list-caution {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    margin-top: 10px;
+  }
+
+  .step-list-caution li {
+    margin-bottom: 5px;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  .step-list {
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 35px;
+  }
+
+  .step-list li {
+    margin-bottom: 14px;
+    margin-top: 14px;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .step-link {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .step-link:hover {
+    color: #007bff;
+    text-decoration: underline;
+  }
+  
+  .step-image {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 5px;
+  }
+  
+  .step-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .step-button {
+    width: 100%;
+    padding: 12px;
+    background: #6b996c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  .step-button:hover {
+    background: #002a13;
+  }
+  

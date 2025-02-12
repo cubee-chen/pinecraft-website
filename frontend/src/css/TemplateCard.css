@@ -1,0 +1,80 @@
+.product-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* If you want reversed layout: .product-card.reversed { flex-direction: column-reverse; } */
+  
+  .product-demo {
+    width: 100%;
+    height: 180px; /* placeholder height */
+    background: #ccc; /* fallback color if no image */
+  }
+  
+  .product-demo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .template-info {
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .template-info h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .template-info p {
+    font-size: 16px;
+    color: #555;
+    margin-top: 10px;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .price-tag {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    margin-top: 10px;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  /* 
+     The new "blue-to-gold" gradient 
+     - We'll animate from left to right on hover. 
+  */
+  .buy-button {
+    background: linear-gradient(to right, #007202, #fbc531);
+    background-size: 200% auto; /* for smoother movement */
+    background-position: left center;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-family: "Poppins", sans-serif;
+    transition: all 0.5s ease; /* includes background-position, transform, etc. */
+  }
+  
+  .buy-button:hover {
+    background-position: right center; /* shift gradient on hover for a slow left-to-right effect */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
