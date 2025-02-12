@@ -197,7 +197,7 @@ const purchasedTemplate = async (req, res) => {
 // Update User's Notion info for Project Management(PM) template
 const updateNotionInfoPM = async (req, res) => {
   try {
-    const { email, templateName, msnDbUrl, prjDbUarl } = req.body;
+    const { email, templateName, msnDbUrl, prjDbUrl } = req.body;
 
     // 1) Check for "notion.so" in each URL
     if (!msnDbUrl.includes("notion.so") || !prjDbUrl.includes("notion.so")) {
