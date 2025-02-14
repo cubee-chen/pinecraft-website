@@ -1,5 +1,5 @@
 // backend/app.js
-require("dotenv").config();
+require("dotenv").config({ path: "/etc/secrets/.env" }); // Use Render secret file path
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -13,6 +13,16 @@ const adminRoute = require("./routes/admin.route.js");
 const app = express();
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") || [];
+
+// Load environment variables
+const JWT_SECRET = process.env.JWT_SECRET;
+const MONGO_URI = process.env.MONGO_URI;
+const ADMIN_TOKEN = proces.env.ADMIN_TOKEN;
+
+if (!JWT_SECRET || !MONGO_URI || !ADMIN_TOKEN) {
+  console.error("Missing environment variables!");
+  process.exit(1);
+}
 
 // Middleware
 app.use(express.json());
