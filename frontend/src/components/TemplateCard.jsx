@@ -6,7 +6,6 @@ function TemplateCard({ template, isReversed }) {
 
   const handleBuyClick = async (e) => {
     e.preventDefault();
-
     navigate(`/template-intro?templatename=${template.name}`);
   };
 
@@ -18,9 +17,9 @@ function TemplateCard({ template, isReversed }) {
       <div className="template-info">
         <h3>{template.name}</h3>
         <p>{template.description}</p>
-        <div className="price-tag">NT: {template.price}</div>
+        {/* <div className="price-tag">NT: {template.price}</div> */}
         <button className="buy-button" onClick={handleBuyClick}>
-          免費試用
+          搶先體驗
         </button>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutThunk } from "../store/slices/authSlice";
 import "../css/Header.css";
 
-function Header() {
+function Header({ isHomePage }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
@@ -29,7 +29,7 @@ function Header() {
   }, []);
 
   return (
-    <nav className={`header ${scrolled ? "scrolled" : ""}`}>
+    <nav className={`header ${scrolled || !isHomePage ? "scrolled" : "transparent"}`}>
       <div className="header-container">
         <div className="logo">
           <Link to="/">Pinecraft</Link>

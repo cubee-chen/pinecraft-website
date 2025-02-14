@@ -1,6 +1,12 @@
+import { useEffect } from "react";
 import "../css/AboutUs.css";
 
 function AboutUs() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const team = {
     CEO: [
       {
@@ -34,7 +40,7 @@ function AboutUs() {
       {
         name: "陳秉宏",
         role: "營運長",
-        dept: "心裡三",
+        dept: "心理三",
         image: "/team-members/cookie.png",
       },
       {

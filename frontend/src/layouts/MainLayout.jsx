@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserProfileThunk } from "../store/slices/authSlice";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import "../css/layout/MainLayout.css";
 
 function MainLayout() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const location = useLocation();
+
+  const isHomePage = location.pathname === "/";
 
   // On initial mount, attempt to fetch profile if user is null
   useEffect(() => {
@@ -19,8 +22,8 @@ function MainLayout() {
 
   return (
     <>
-      <Header />
-      <main className="main-content">
+      <Header isHomePage={isHomePage} />
+      <main className={`main-content ${isHomePage ? "home-page" : "other-page"}`}>
         <Outlet />
       </main>
       <Footer />
