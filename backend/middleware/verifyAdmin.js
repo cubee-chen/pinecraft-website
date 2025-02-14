@@ -1,3 +1,5 @@
+require("dotenv").config({ path: "/etc/secrets/.env" }); // Use Render secret file path
+
 const verifyAdmin = (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader) {

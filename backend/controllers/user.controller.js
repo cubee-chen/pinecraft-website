@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-require("dotenv").config();
+require("dotenv").config({ path: "/etc/secrets/.env" }); // Use Render secret file path
 const User = require("../models/user.model.js");
 const Template = require("../models/template.model.js");
 
