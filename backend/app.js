@@ -18,7 +18,7 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") || [];
 const JWT_SECRET = process.env.JWT_SECRET;
 const MONGO_URI = process.env.MONGO_URI;
 
-if (!JWT_SECRET || !MONGO_URI || !ADMIN_TOKEN) {
+if (!JWT_SECRET || !MONGO_URI) {
   console.error("Missing environment variables!");
   process.exit(1);
 }
