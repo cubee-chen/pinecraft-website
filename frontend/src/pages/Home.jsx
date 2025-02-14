@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import TemplateCard from "../components/TemplateCard";
 import "../css/Home.css";
 
 function Home() {
+  const navigate = useNavigate();
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [templates, setTemplates] = useState([]);
 
   useEffect(() => {
     const fetchTemplates = async () => {
       try {
-        // Use the public domain from .env
-        const resp = await fetch(`${API_BASE_URL}/api/template/get`)
+        const resp = await fetch(`${API_BASE_URL}/api/template/get`);
         if (!resp.ok) {
           throw new Error(`HTTP error! ${resp.status}`);
         }
@@ -25,22 +26,38 @@ function Home() {
 
   return (
     <div className="home">
+      {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">
           <h1>Pinecraft</h1>
-          <h3>智慧運算、效能進化</h3>
+          <h3>你的 <span>Notion</span> 智慧設計師</h3>
           <blockquote>Crafting Your Notion Experience</blockquote>
         </div>
       </section>
-      {/*Our vision section*/}
-      <section className="intro-section">
-        <h2>打造屬於你的生產力套件</h2>
-        <p>
-          PINECRAFT 致力於開發 Notion 模板，並且整合後端伺服器與 AI 驅動，提供最佳的生產力工具。
-        </p>
+
+      {/* Brand Intro Section */}
+      <section className="brand-intro">
+        <div className="brand-container">
+          <img
+            src="/images/logo.png"
+            alt="Pinecraft Logo"
+            className="brand-logo"
+          />
+          <div className="brand-text">
+            <h2>你的 Notion 智慧設計師</h2>
+            <p>
+              PineCraft 的使命是幫助用戶最大化 Notion 的潛力，立志設計高效的
+              Notion
+              模板來革命性改變人們的工作和生活方式。我們堅持「精心打造您的
+              Notion 體驗」的宗旨，致力於開發靈活且易於上手的 Notion
+              模板，並結合結合演算法與AI的驅動，幫助用戶提升生產力，並探索新的工作流程可能性。
+            </p>
+          </div>
+        </div>
       </section>
-      {/* products demo */}
-      <div className="products-grid">
+
+      {/* Products Section */}
+      <section id="products-section" className="products-section">
         {templates.map((template, index) => (
           <TemplateCard
             key={template._id}
@@ -48,7 +65,7 @@ function Home() {
             isReversed={index % 2 !== 0}
           />
         ))}
-      </div>
+      </section>
     </div>
   );
 }
