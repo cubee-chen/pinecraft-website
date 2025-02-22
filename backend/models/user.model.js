@@ -3,30 +3,26 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
-    username: { type: String, required: true, unique: true },
+    username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    notionToken: { type: String, required: true },
-    purchasedTemplates: {
-      type: [String],
-      default: [],
-    },
-    // New field for storing additional Notion info per template:
+    googleId: { type: String },
+    notionToken: { type: String, default: "" },
+    purchasedTemplates: { type: [String], default: [] },
     notionInfo: {
       type: Map,
       of: new mongoose.Schema({
-        // For example, for 專案管理 template:
         msn_db_id: { type: String },
         prj_db_id: { type: String },
-        // For other templates you may only need one ID:
         main_db_id: { type: String },
       }),
       default: {},
     },
+    // Extra profile fields to be completed after OAuth
+    age: { type: Number },
+    gender: { type: String },
+    job: { type: String },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
 const User = mongoose.model("User", userSchema);

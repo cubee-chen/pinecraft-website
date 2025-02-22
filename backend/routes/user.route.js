@@ -6,6 +6,7 @@ const {
   userLogin,
   updatePassword,
   userLogout,
+  updateProfile,
   getUserProfile,
   purchasedTemplate,
   updateNotionInfoPM
@@ -23,6 +24,7 @@ router.post("/update-notion-info/pm", updateNotionInfoPM);
 
 
 // PROTECTED route -> must have valid cookie token
-router.get("/profile", verifyToken, getUserProfile); // Get user profile
+router.post("/update-profile", verifyToken, updateProfile);
+router.get("/profile", verifyToken, getUserProfile);
 
 module.exports = router;

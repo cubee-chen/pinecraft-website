@@ -124,6 +124,7 @@ const updatePassword = async (req, res) => {
   }
 };
 
+
 const userLogout = (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
@@ -148,6 +149,25 @@ const getUserProfile = async (req, res) => {
   } catch (error) {
     console.error("獲取用戶資訊錯誤：", error);
     res.status(500).json({ message: "伺服器錯誤，請稍後再試" });
+  }
+};
+
+const updateProfile = async (req, res) => {
+  try {
+    const { age, gender, job } = req.body;
+    // req.user is set by your verifyToken or Passport session
+    const userId = req.user._id;
+    const user = await require("../models/user.model.js").findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    user.age = age;
+    user.gender = gender;
+    user.job = job;
+    await user.save();
+    res.status(200).json({ message: "Profile updated" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -249,6 +269,7 @@ module.exports = {
   userLogin,
   updatePassword,
   userLogout,
+  updateProfile,
   getUserProfile,
   purchasedTemplate,
   updateNotionInfoPM,

@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const session = require("express-session");
+const passport = require("./config/passport");
 
 const userRoute = require("./routes/user.route.js");
 const templateRoute = require("./routes/template.route.js");
@@ -27,10 +29,28 @@ app.use(
   })
 );
 
+// Setup session middleware (used by Passport)
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }, // for development only
+  })
+);
+
+// Initialize Passport and session
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Test route
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
+// Google OAuth routes
+const googleAuthRouter = require("./routes/googleAuth.route");
+app.use("/api/auth", googleAuthRouter);
 
 // Routes
 app.use("/api/auth", userRoute);

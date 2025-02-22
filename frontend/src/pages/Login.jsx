@@ -21,38 +21,62 @@ function Login() {
     }
   };
 
+  const handleGoogleLogin = () => {
+    // Redirect to your backend Google OAuth endpoint
+    window.location.href = `${import.meta.env.VITE_API_BASE_URL}/api/auth/google`;
+  };
+
+  // return (
+  //   <div className="login-container">
+  //     <div className="login-box">
+  //       <h2>登入</h2>
+  //       <form className="login-form" onSubmit={handleLogin}>
+  //         <input
+  //           type="email"
+  //           placeholder="電子信箱"
+  //           value={email}
+  //           onChange={(e) => setEmail(e.target.value)}
+  //           required
+  //         />
+  //         <input
+  //           type="password"
+  //           placeholder="密碼"
+  //           value={password}
+  //           onChange={(e) => setPassword(e.target.value)}
+  //           required
+  //         />
+  //         <button className="login-button" type="submit" disabled={loading}>
+  //           {loading ? "登入中..." : "登入"}
+  //         </button>
+  //       </form>
+  //       {error && <p style={{ color: "red" }}>{error}</p>}
+
+  //       {/* Register Link */}
+  //       <div className="register-link">
+  //         <span>還沒有帳號嗎？ </span>
+  //         <Link to="/signup-first">立即註冊</Link>
+  //       </div>
+  //       <div className="register-link">
+  //         <Link to="/forget-password">忘記密碼?</Link>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
+
+
   return (
     <div className="login-container">
       <div className="login-box">
         <h2>登入</h2>
-        <form className="login-form" onSubmit={handleLogin}>
-          <input
-            type="email"
-            placeholder="電子信箱"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="密碼"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button className="login-button" type="submit" disabled={loading}>
-            {loading ? "登入中..." : "登入"}
-          </button>
-        </form>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-
-        {/* Register Link */}
+        {/* Existing email/password form */}
+        {/* ... */}
+        <button onClick={handleGoogleLogin} className="google-button">
+          Sign in with Google
+        </button>
+        {/* Additional links */}
         <div className="register-link">
           <span>還沒有帳號嗎？ </span>
           <Link to="/signup-first">立即註冊</Link>
-        </div>
-        <div className="register-link">
-          <Link to="/forget-password">忘記密碼?</Link>
         </div>
       </div>
     </div>
