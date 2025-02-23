@@ -1,4 +1,3 @@
-// config/passport.js
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../models/user.model.js");
@@ -12,16 +11,17 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        // Try to find an existing user by Google ID
         let user = await User.findOne({ googleId: profile.id });
         if (!user) {
-          // Create a new user if one doesn't exist.
           user = new User({
             googleId: profile.id,
             username: profile.displayName,
             email: profile.emails[0].value,
-            // For Google users, we don’t have a password so leave it undefined
-            notionToken: "", // later to be updated by the user
+            profilePicture:
+              profile.photos && profile.photos.length > 0
+                ? profile.photos[0].value
+                : "",
+            notionToken: "", // remains empty until the user updates it
           });
           await user.save();
         }
@@ -33,7 +33,6 @@ passport.use(
   )
 );
 
-// Serialize/deserialize for session support
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });

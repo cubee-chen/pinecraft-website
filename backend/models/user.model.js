@@ -1,4 +1,3 @@
-// models/user.model.js
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
@@ -6,6 +5,7 @@ const userSchema = new mongoose.Schema(
     username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     googleId: { type: String },
+    profilePicture: { type: String },
     notionToken: { type: String, default: "" },
     purchasedTemplates: { type: [String], default: [] },
     notionInfo: {
@@ -18,7 +18,8 @@ const userSchema = new mongoose.Schema(
       default: {},
     },
     // Extra profile fields to be completed after OAuth
-    age: { type: Number },
+    birthYear: { type: Number },
+    birthMonth: { type: Number },
     gender: { type: String },
     job: { type: String },
   },
