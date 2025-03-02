@@ -12,7 +12,7 @@
 # Stage 1: Build Frontend
 FROM node:20 as frontend-builder
 # Set working directory for the frontend build
-WORKDIR /MyWork/frontend
+WORKDIR /frontend
 # Copy package files into the current working directory
 COPY frontend/package.json frontend/yarn.lock ./
 # Install dependencies (including vite)
@@ -25,7 +25,7 @@ RUN yarn build
 # Stage 2: Build Backend
 FROM node:20
 # Set working directory for the backend
-WORKDIR /MyWork/backend
+WORKDIR /backend
 # Copy the backend package files
 COPY backend/package*.json ./
 # (Optional) Install nodemon globally if you need it for development;
@@ -38,7 +38,7 @@ COPY backend/ .
 # Copy the built frontend static files from the first stage
 # If your vite build outputs to "build" (because you configured it), use that folder.
 # If it outputs to "dist" (the default), change "build" to "dist" accordingly.
-COPY --from=frontend-builder /MyWork/frontend/build ./build
+COPY --from=frontend-builder /frontend/build ./build
 # Expose the port
 EXPOSE 5000
 # Start the server
