@@ -5,6 +5,7 @@ import ProductIntro from "../components/ProductIntro";
 import "../css/TemplateIntro.css";
 
 function TemplateIntro() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [searchParams] = useSearchParams();
   const templateName = searchParams.get("templatename") || "未知模板";
   const navigate = useNavigate();
@@ -12,6 +13,19 @@ function TemplateIntro() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    // CRM Update
+    fetch(`${API_BASE_URL}/api/crm/update`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: "randomPerson",
+        crmKey: "templateIntroPage.viewTime",
+        crmValue: new Date().getTime(),
+      }),
+    });
+  }, [API_BASE_URL]);
 
   // You can optionally fetch template details here if needed
   // For now we assume static instructions

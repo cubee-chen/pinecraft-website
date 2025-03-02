@@ -10,6 +10,7 @@ const passport = require("./config/passport");
 
 const userRoute = require("./routes/user.route.js");
 const templateRoute = require("./routes/template.route.js");
+const crmRoute = require("./routes/crm.route.js");
 const adminRoute = require("./routes/admin.route.js");
 
 const app = express();
@@ -55,6 +56,7 @@ app.use("/api/auth", googleAuthRouter);
 // Routes
 app.use("/api/auth", userRoute);
 app.use("/api/template", templateRoute);
+app.use("/api/crm", crmRoute);
 app.use("/api/admin", adminRoute);
 
 

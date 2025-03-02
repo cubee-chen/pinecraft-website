@@ -22,6 +22,17 @@ function Home() {
       }
     };
     fetchTemplates();
+    
+    // CRM Update
+    fetch(`${API_BASE_URL}/api/crm/update`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: "randomPerson", //! Fix email problem
+        crmKey: "homePage.viewTime",
+        crmValue: new Date().getTime(),
+      }),
+    });
   }, [API_BASE_URL]);
 
   return (

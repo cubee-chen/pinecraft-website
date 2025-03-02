@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../css/UserProfile.css";
 
 function UserProfile() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, loading } = useSelector((state) => state.auth);
@@ -29,6 +30,19 @@ function UserProfile() {
       setNewToken(user.notionToken || "");
     }
   }, [user, dispatch]);
+
+  useEffect(() => {
+    // CRM Update
+    fetch(`${API_BASE_URL}/api/crm/update`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: user.email,
+        crmKey: "userProfilePage.viewTime",
+        crmValue: new Date().getTime(),
+      }),
+    });
+  }, [user, API_BASE_URL]);
 
   // Update the user's notionToken
   const handleTokenUpdate = async () => {

@@ -29,6 +29,19 @@ function SignupSecond() {
     // If user is logged in => step 1 is done => show step 2.
   }, []);
 
+  useEffect(() => {
+    // CRM Update
+    fetch(`${API_BASE_URL}/api/crm/update`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: "randomPerson",
+        crmKey: "signupSecondPage.viewTime",
+        crmValue: new Date().getTime(),
+      }),
+    });
+  }, [API_BASE_URL]);
+
   // ---- Step 2: Submit Basic Info ----
   const handleStep2Submit = async (e) => {
     e.preventDefault();

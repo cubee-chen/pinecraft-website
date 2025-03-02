@@ -2,10 +2,24 @@ import { useEffect } from "react";
 import "../css/AboutUs.css";
 
 function AboutUs() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    // CRM Update
+    fetch(`${API_BASE_URL}/api/crm/update`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: "randomPerson",
+        crmKey: "aboutUsPage.viewTime",
+        crmValue: new Date().getTime(),
+      }),
+    });
+  }, [API_BASE_URL]);
 
   const team = {
     CEO: [

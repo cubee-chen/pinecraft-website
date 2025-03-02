@@ -34,6 +34,19 @@ function TemplateDeliver() {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    // CRM Update
+    fetch(`${API_BASE_URL}/api/crm/update`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: "randomPerson",
+        crmKey: "templateDeliverPage.viewTime",
+        crmValue: new Date().getTime(),
+      }),
+    });
+  }, [API_BASE_URL]);
+
   // Simulate typing effect
   const typingTextRef = useRef([]);
   useEffect(() => {
