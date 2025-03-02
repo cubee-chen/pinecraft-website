@@ -1,6 +1,7 @@
 // src/pages/template-intro/TemplateIntro.jsx
 import { useEffect } from "react";
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
+import ProductIntro from "../components/ProductIntro";
 import "../css/TemplateIntro.css";
 
 function TemplateIntro() {
@@ -21,13 +22,18 @@ function TemplateIntro() {
   };
 
   return (
-    <div className="template-intro-container">
-      <h1 className="intro-title">{templateName} - 模板介紹</h1>
-      <button className="intro-buy-button" onClick={handleBuy}>
-        購買模板
-      </button>
-      <Link to="/" className="intro-back-link">返回首頁</Link>
-    </div>
+    <>
+      <div>
+        <ProductIntro templateName={templateName} handleBuy={handleBuy}/>
+      </div>
+      {/* <div className="template-intro-container">
+        <h1 className="intro-title">{templateName} - 模板介紹</h1>
+        <button className="intro-buy-button" onClick={handleBuy}>
+          購買模板
+        </button>
+        <Link to="/" className="intro-back-link">返回首頁</Link>
+      </div> */}
+    </>
   );
 }
 
