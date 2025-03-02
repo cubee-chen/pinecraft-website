@@ -69,7 +69,11 @@ const purchasedTemplate = async (req, res) => {
     await user.save();
 
     // Send Email to User
-    await createAndSendEmail(user.username, templateName, "https://r.mtdv.me/pinecraftnotion", email);
+    try {
+      await createAndSendEmail(user.username, templateName, "https://r.mtdv.me/pinecraftnotion", email);
+    } catch {
+      return res.status(400).json({ message: "Cannot Send Email. Please Contact Developers." });
+    }
 
     res.status(200).json({
       message: "購買成功",

@@ -42,8 +42,7 @@ const createAndSendEmail = async (username, templateName, templateLink, userEmai
     .replaceAll("$username", username)
     .replaceAll("$templateName", templateName)
     .replaceAll("$templateLink", templateLink);
-  const result = await sendEmail(userEmail, "Pinecraft 模板寄發通知", templateLink, emailContent);
-  console.log(result);
+  await sendEmail(userEmail, "Pinecraft 模板寄發通知", templateLink, emailContent);
 };
 
 module.exports = {
