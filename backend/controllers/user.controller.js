@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const User = require("../models/user.model.js");
 const Template = require("../models/template.model.js");
+const { createAndSendEmail } = require("../functions/autoEmail.js");
 
 const userLogout = (req, res, next) => {
   req.logout((err) => {
@@ -66,6 +67,9 @@ const purchasedTemplate = async (req, res) => {
 
     user.purchasedTemplates.push(templateName);
     await user.save();
+
+    // Send Email to User
+    await createAndSendEmail(user.username, templateName, "https://r.mtdv.me/pinecraftnotion", email);
 
     res.status(200).json({
       message: "購買成功",
