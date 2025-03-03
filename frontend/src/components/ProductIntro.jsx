@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "../css/ProductIntro.css";
 
+//! Can be converted to schema
 const template_to_image = {
   "專案管理": "pm-product-intro.png"
 };

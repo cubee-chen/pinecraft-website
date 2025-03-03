@@ -4,7 +4,12 @@ const crmSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   homePage: {
     viewTime: {type: [Number], default: []},
-    hovers: {
+    hoverTime: {
+      pm: {type: [Number], default: []},
+      habit: {type: [Number], default: []},
+      life: {type: [Number], default: []},
+    },
+    hoverLeaveTime: {
       pm: {type: [Number], default: []},
       habit: {type: [Number], default: []},
       life: {type: [Number], default: []},
@@ -12,7 +17,7 @@ const crmSchema = new mongoose.Schema({
   },
   templateIntroPage: {
     viewTime: {type: [Number], default: []},
-    fullScrolls: {
+    scrollToBottomTime: {
       pm: {type: [Number], default: []},
       habit: {type: [Number], default: []},
       life: {type: [Number], default: []},

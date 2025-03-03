@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "../css/SignupSecond.css";
 
 function SignupSecond() {
+  // For CRM Purposes
+  const { user } = useSelector((state) => state.auth);
   // 5 steps total:
   // 1: Google OAuth (auto-complete)
   // 2: 基本資料
@@ -35,7 +38,7 @@ function SignupSecond() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: "randomPerson",
+        email: user ? user.email : "randomPerson",
         crmKey: "signupSecondPage.viewTime",
         crmValue: new Date().getTime(),
       }),

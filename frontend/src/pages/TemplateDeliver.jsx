@@ -40,7 +40,7 @@ function TemplateDeliver() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: "randomPerson",
+        email: user ? user.email : "randomPerson",
         crmKey: "templateDeliverPage.viewTime",
         crmValue: new Date().getTime(),
       }),

@@ -1,16 +1,55 @@
 import { useNavigate } from "react-router-dom";
 import "../css/TemplateCard.css";
 
-function TemplateCard({ template, isReversed }) {
+//! Can be converted to schema
+const template_to_crm = {
+  "專案管理": "pm",
+  "好習慣養成": "habit",
+  "生活規劃": "life",
+};
+
+function TemplateCard({ template, isReversed, user }) {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
 
   const handleBuyClick = async (e) => {
+    await handleHoverLeave(e);
     e.preventDefault();
     navigate(`/template-intro?templatename=${template.name}`);
   };
 
+  const handleHover = async (e) => {
+    // CRM Update
+    await fetch(`${API_BASE_URL}/api/crm/update`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: user ? user.email : "randomPerson", 
+        crmKey: `homePage.hoverTime.${template_to_crm[template.name]}`,
+        crmValue: new Date().getTime(),
+      }),
+    });
+  }
+
+  const handleHoverLeave = async (e) => {
+    // CRM Update
+    await fetch(`${API_BASE_URL}/api/crm/update`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: user ? user.email : "randomPerson", 
+        crmKey: `homePage.hoverLeaveTime.${template_to_crm[template.name]}`,
+        crmValue: new Date().getTime(),
+      }),
+    });
+  }
+
   return (
-    <div className={`product-card ${isReversed ? "reversed" : ""}`}>
+    <div 
+      className={`product-card ${isReversed ? "reversed" : ""}`}
+      onMouseEnter={handleHover}
+      onMouseLeave={handleHoverLeave}
+    >
       <div className="product-demo">
         <img src={template.imageUrl} alt={template.name} />
       </div>

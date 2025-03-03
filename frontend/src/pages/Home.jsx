@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TemplateCard from "../components/TemplateCard";
+import { useSelector } from "react-redux";
 import "../css/Home.css";
 
 function Home() {
   const navigate = useNavigate();
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [templates, setTemplates] = useState([]);
+
+  // For CRM Purposes
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const fetchTemplates = async () => {
@@ -28,7 +32,7 @@ function Home() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: "randomPerson", //! Fix email problem
+        email: user ? user.email : "randomPerson", 
         crmKey: "homePage.viewTime",
         crmValue: new Date().getTime(),
       }),
@@ -74,6 +78,7 @@ function Home() {
             key={template._id}
             template={template}
             isReversed={index % 2 !== 0}
+            user={user}
           />
         ))}
       </section>

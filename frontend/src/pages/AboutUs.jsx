@@ -1,8 +1,12 @@
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import "../css/AboutUs.css";
 
 function AboutUs() {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+  // For CRM Purposes
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -14,7 +18,7 @@ function AboutUs() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: "randomPerson",
+        email: user ? user.email : "randomPerson",
         crmKey: "aboutUsPage.viewTime",
         crmValue: new Date().getTime(),
       }),
