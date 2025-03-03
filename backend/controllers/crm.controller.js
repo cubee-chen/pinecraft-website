@@ -3,7 +3,8 @@ const CRM = require("../models/crm.model.js");
 const updateCRMProfile = async (req, res) => {
   try {
     // example: crmKey = homePage.hovers.pm, crmValue = 100
-    const { email, crmKey, crmValue } = req.body;
+    const { email: rawEmail, crmKey, crmValue } = req.body;
+    const email = (rawEmail === "randomPerson") ? `user_${req.ip}` : rawEmail;
     let returnMessage = "";
 
     let crmProfile = await CRM.findOne({ email });
