@@ -1,11 +1,29 @@
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import "../css/AboutUs.css";
 
 function AboutUs() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+  // For CRM Purposes
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    // CRM Update
+    fetch(`${API_BASE_URL}/api/crm/update`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: user ? user.email : "randomPerson",
+        crmKey: "aboutUsPage.viewTime",
+        crmValue: new Date().getTime(),
+      }),
+    });
+  }, [API_BASE_URL]);
 
   const team = {
     CEO: [
