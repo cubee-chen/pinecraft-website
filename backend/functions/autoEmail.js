@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
+require("dotenv").config({ path: "/etc/secrets/.env" }); // Use Render secret file path
 
 const loadEmailTemplate = () => new Promise((resolve, reject) => {
   fs.readFile(path.join(__dirname, '../templates/emailTemplate.html'), 'utf-8', (err, data) => {

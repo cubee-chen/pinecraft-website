@@ -2,6 +2,7 @@
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
+require("dotenv").config({ path: "/etc/secrets/.env" }); // Use Render secret file path
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 
 router.get(
